@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>النموذج الثاني – اختبار نهاية الفصل الأول – الدراسات الاجتماعية – الصف الثاني عشر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0f2b46; --ink2:#1d4468; --teal:#0e7c7b; --gold:#c9a227; --gold2:#f2d675;
+  --sand:#faf6ec; --paper:#ffffff; --line:#e6dfcc; --muted:#5d6b78;
+  --ok:#1b8a4b; --okbg:#e5f6ec; --bad:#b3261e; --badbg:#fdeceb;
+  --u1:#0e7c7b; --u2:#2a6fb0; --u3:#b5651d; --u4:#7a3e9d; --u5:#2e7d32;
+  --shadow:0 8px 30px rgba(15,43,70,.10);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Cairo','Segoe UI',Tahoma,sans-serif;background:var(--sand);color:var(--ink);line-height:1.9;
+  background-image:radial-gradient(circle at 12% 8%,rgba(201,162,39,.10) 0 120px,transparent 121px),radial-gradient(circle at 92% 30%,rgba(14,124,123,.08) 0 160px,transparent 161px)}
+.wrap{max-width:980px;margin:0 auto;padding:0 16px 90px}
+
+/* hero */
+.hero{background:linear-gradient(135deg,var(--ink) 0%,var(--ink2) 55%,var(--teal) 130%);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;opacity:.12;
+  background:repeating-linear-gradient(45deg,#fff 0 2px,transparent 2px 22px),repeating-linear-gradient(-45deg,#fff 0 2px,transparent 2px 22px)}
+.hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold))}
+.hero .in{position:relative;max-width:980px;margin:0 auto;padding:34px 16px 44px;text-align:center}
+.badge{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35);padding:2px 16px;border-radius:99px;font-size:.9rem;margin-bottom:10px}
+.hero h1{margin:.1em 0;font-size:clamp(1.5rem,4.4vw,2.5rem);font-weight:800}
+.hero h2{margin:0;font-weight:600;font-size:clamp(1rem,2.6vw,1.3rem);color:var(--gold2)}
+.credit{margin-top:18px;font-size:.95rem;opacity:.95}
+.credit b{color:var(--gold2)}
+
+/* cards */
+.card{background:var(--paper);border-radius:18px;box-shadow:var(--shadow);border:1px solid var(--line);padding:22px;margin-top:22px}
+.card h3{margin:0 0 12px;font-size:1.25rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{background:var(--sand);border:1px solid var(--line);border-radius:14px;padding:12px;text-align:center}
+.stat small{display:block;color:var(--muted);font-size:.8rem}
+.stat b{font-size:1.25rem;color:var(--ink)}
+.field{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.field input{flex:1;min-width:200px;padding:12px 14px;border:2px solid var(--line);border-radius:12px;font:inherit;background:#fff}
+.field input:focus{outline:none;border-color:var(--teal)}
+.btn{border:0;cursor:pointer;font:inherit;font-weight:700;padding:12px 26px;border-radius:12px;color:#fff;background:linear-gradient(135deg,var(--teal),var(--ink2));box-shadow:0 6px 16px rgba(14,124,123,.3);transition:.2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.gold{background:linear-gradient(135deg,var(--gold),#a8841a);color:#2b2100;box-shadow:0 6px 16px rgba(201,162,39,.35)}
+.btn.ghost{background:#fff;color:var(--ink);border:2px solid var(--line);box-shadow:none}
+.rules{margin:12px 0 0;padding-inline-start:22px;color:var(--ink2)}
+
+/* sticky bar */
+#bar{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:3px solid var(--gold);box-shadow:0 4px 16px rgba(0,0,0,.08);display:none}
+#bar .row{max-width:980px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+#timer{font-weight:800;font-size:1.25rem;background:var(--ink);color:var(--gold2);padding:2px 16px;border-radius:12px;font-variant-numeric:tabular-nums;direction:ltr}
+#timer.low{background:var(--bad);color:#fff;animation:pulse 1s infinite}
+@keyframes pulse{50%{opacity:.65}}
+.prog{flex:1;min-width:150px}
+.prog .t{font-size:.85rem;color:var(--muted)}
+.track{height:10px;background:#ece6d3;border-radius:99px;overflow:hidden}
+.fill{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--gold));transition:width .3s}
+#pal{display:flex;gap:5px;flex-wrap:wrap;max-width:980px;margin:0 auto;padding:0 16px 8px}
+#pal a{width:28px;height:28px;border-radius:8px;border:2px solid var(--line);display:grid;place-items:center;font-size:.78rem;font-weight:700;color:var(--muted);text-decoration:none;background:#fff}
+#pal a.done{background:var(--teal);border-color:var(--teal);color:#fff}
+#pal a.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+#pal a.no{background:var(--bad);border-color:var(--bad);color:#fff}
+
+/* unit */
+.unit{margin-top:30px;border-radius:20px;overflow:hidden;background:var(--paper);border:1px solid var(--line);box-shadow:var(--shadow)}
+.uh{color:#fff;padding:16px 22px;background:linear-gradient(120deg,var(--c),color-mix(in srgb,var(--c) 60%,#000));position:relative}
+.uh .no{font-size:.85rem;opacity:.9}
+.uh h3{margin:0;font-size:1.35rem}
+.uh .meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.chip{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);border-radius:99px;padding:0 12px;font-size:.8rem}
+.outcome{background:color-mix(in srgb,var(--c) 9%,#fff);border-bottom:1px dashed var(--c);padding:10px 22px;font-size:.92rem;color:var(--ink2)}
+.outcome b{color:var(--c)}
+.text{padding:20px 24px;border-bottom:1px solid var(--line);font-family:'Amiri','Cairo',serif;font-size:1.22rem;line-height:2.15;text-align:justify;background:linear-gradient(#fffdf6,#fff)}
+.text h4{font-family:'Cairo';margin:0 0 8px;color:var(--c);font-size:1.2rem;text-align:center}
+.text p{margin:.5em 0}
+.text table{border-collapse:collapse;width:100%;margin:12px 0;font-family:'Cairo';font-size:.95rem}
+.text th{background:var(--c);color:#fff;padding:8px}
+.text td{border:1px solid var(--line);padding:8px;text-align:center}
+.text tr:nth-child(even) td{background:#faf7ee}
+.text .cap{font-family:'Cairo';font-weight:700;text-align:center;color:var(--ink2)}
+.qs{padding:8px 22px 22px}
+.q{margin-top:18px;padding:16px;border:2px solid var(--line);border-radius:16px;background:#fff;transition:.2s;scroll-margin-top:120px}
+.q.ans{border-color:color-mix(in srgb,var(--c) 55%,#fff)}
+.qt{display:flex;gap:10px;font-weight:700;font-size:1.05rem}
+.qn{flex:none;width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;display:grid;place-items:center;font-size:.95rem}
+.pts{margin-inline-start:auto;font-size:.75rem;color:var(--muted);white-space:nowrap}
+.opts{display:grid;gap:8px;margin-top:10px}
+.opt{display:flex;gap:10px;align-items:flex-start;text-align:right;width:100%;padding:10px 14px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer;font:inherit;color:var(--ink);transition:.15s}
+.opt:hover{border-color:var(--c);background:color-mix(in srgb,var(--c) 6%,#fff)}
+.opt .l{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-weight:700;font-size:.85rem}
+.opt.sel{border-color:var(--c);background:color-mix(in srgb,var(--c) 12%,#fff)}
+.opt.sel .l{background:var(--c);border-color:var(--c);color:#fff}
+.locked .opt{cursor:default}
+.opt.right{border-color:var(--ok);background:var(--okbg)}
+.opt.right .l{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.wrong{border-color:var(--bad);background:var(--badbg)}
+.opt.wrong .l{background:var(--bad);border-color:var(--bad);color:#fff}
+.expl{display:none;margin-top:10px;padding:10px 14px;border-radius:12px;background:#fff8dc;border:1px solid var(--gold);font-size:.92rem}
+.locked .expl.show{display:block}
+
+/* finish */
+.finish{text-align:center;margin-top:34px}
+#result{display:none}
+.score{display:flex;gap:24px;align-items:center;flex-wrap:wrap;justify-content:center}
+.ring{--p:0;width:170px;height:170px;border-radius:50%;background:conic-gradient(var(--teal) calc(var(--p)*1%),#ece6d3 0);display:grid;place-items:center}
+.ring div{width:132px;height:132px;border-radius:50%;background:#fff;display:grid;place-items:center;font-weight:800;font-size:2rem;line-height:1.2;text-align:center}
+.ring small{display:block;font-size:.8rem;color:var(--muted);font-weight:600}
+.ubars{flex:1;min-width:240px}
+.ub{margin:8px 0}
+.ub .n{display:flex;justify-content:space-between;font-size:.9rem}
+.ub .track{height:12px}
+.foot{margin-top:40px;text-align:center;color:var(--muted);font-size:.9rem;border-top:2px solid var(--gold);padding-top:14px}
+.foot b{color:var(--ink)}
+.hide{display:none!important}
+@media print{
+  #bar,.btn,.field,.finish,.hero::before{display:none!important}
+  body{background:#fff}.card,.unit{box-shadow:none}.unit{break-inside:auto}.q{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="hero"><div class="in">
+  <span class="badge">وزارة التربية والتعليم – دولة الإمارات العربية المتحدة</span>
+  <h1>اختبار نهاية الفصل الدراسي الأول <span style="color:var(--gold2)">– النموذج الثاني</span></h1>
+  <h2>الدراسات الاجتماعية – الصف الثاني عشر (عام) – العام الدراسي 2026-2027</h2>
+  <div class="credit">إعداد: <b>رائد السقار</b> &nbsp;|&nbsp; مدرسة محمد بن راشد – الحلقة الثانية والثالثة &nbsp;|&nbsp; دبي</div>
+</div></header>
+
+<div id="bar">
+  <div class="row">
+    <div id="timer">120:00</div>
+    <div class="prog"><div class="t"><span id="pc">0</span> / 25 سؤالًا تمت الإجابة عنها</div><div class="track"><div class="fill" id="pf"></div></div></div>
+    <button class="btn gold" onclick="finish()" style="padding:6px 18px">إنهاء الاختبار</button>
+  </div>
+  <div id="pal"></div>
+</div>
+
+<main class="wrap">
+
+<section class="card" id="intro">
+  <h3>بيانات الاختبار</h3>
+  <div class="grid">
+    <div class="stat"><small>عدد الأسئلة</small><b>25</b></div>
+    <div class="stat"><small>درجة السؤال</small><b>4</b></div>
+    <div class="stat"><small>الدرجة القصوى</small><b>100</b></div>
+    <div class="stat"><small>مدة الاختبار</small><b>120 دقيقة</b></div>
+    <div class="stat"><small>طريقة التطبيق</small><b>إلكتروني</b></div>
+    <div class="stat"><small>الآلة الحاسبة</small><b style="color:var(--ok)">مسموح بها</b></div>
+  </div>
+  <ul class="rules">
+    <li>اقرأ كل نص قراءة متأنية قبل الإجابة عن أسئلته؛ فالنصوص كاملة داخل الاختبار.</li>
+    <li>لكل سؤال أربعة بدائل، واحد منها فقط صحيح. يمكنك تغيير إجابتك قبل إنهاء الاختبار.</li>
+    <li>الأسئلة الحسابية (8 و9 و12 و17) يمكن حلها بالآلة الحاسبة.</li>
+    <li>سيبدأ العدّاد التنازلي عند الضغط على «ابدأ الاختبار»، وتُسلَّم الإجابات تلقائيًا عند انتهاء الوقت.</li>
+  </ul>
+  <div class="field">
+    <input id="sname" placeholder="اكتب اسمك الكامل" autocomplete="name">
+    <button class="btn" onclick="start()">ابدأ الاختبار ◀</button>
+  </div>
+</section>
+
+<div id="exam" class="hide"></div>
+
+<div class="finish hide" id="fin">
+  <button class="btn gold" onclick="finish()" style="font-size:1.1rem">تسليم الاختبار وعرض النتيجة</button>
+</div>
+
+<section class="card" id="result">
+  <h3 id="rtitle">النتيجة</h3>
+  <div class="score">
+    <div class="ring" id="ring"><div><span id="rs">0<small>من 100</small></span></div></div>
+    <div class="ubars" id="ubars"></div>
+  </div>
+  <p id="rmsg" style="text-align:center;font-weight:700;margin-top:14px"></p>
+  <p style="text-align:center;color:var(--muted);font-size:.9rem">مرّر للأعلى لمراجعة إجاباتك: الأخضر صحيح، والأحمر خطأ مع بيان الإجابة الصحيحة.</p>
+  <div style="text-align:center;margin-top:10px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button class="btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">مراجعة الأسئلة</button>
+    <button class="btn ghost" onclick="window.print()">طباعة / حفظ PDF</button>
+    <button class="btn ghost" onclick="location.reload()">إعادة المحاولة</button>
+  </div>
+</section>
+
+<div class="foot">إعداد: <b>رائد السقار</b> – مدرسة محمد بن راشد (الحلقة الثانية والثالثة) – دبي</div>
+</main>
+
+<script>
+var LET=['أ','ب','ج','د'];
+var UNITS=[
+{c:'var(--u1)',title:'بقوة الاتحاد',type:'نص مقروء',out:'يشرح دور الآباء المؤسسين للدولة في تطوير الدولة وضمان رفاهية الشعب',
+text:`<h4>بناء الدولة الاتحادية</h4>
+<p>بعد إعلان الاتحاد في الثاني من ديسمبر عام 1971م، بدأت مرحلة لا تقل صعوبة عن مرحلة التأسيس، هي مرحلة بناء المؤسسات الاتحادية التي تحوّل الاتفاق إلى دولة قادرة على خدمة شعبها. فاجتمع المجلس الأعلى للاتحاد، وهو أعلى سلطة في الدولة ويضم حكام الإمارات، وانتخب الشيخ زايد بن سلطان آل نهيان رئيسًا للدولة والشيخ راشد بن سعيد آل مكتوم نائبًا له، ورُفع علم الدولة الموحد لأول مرة ليعبّر عن هوية واحدة تجمع أبناءها.</p>
+<p>ولم يكن توحيد الأنظمة أمرًا يسيرًا؛ فقد كانت لكل إمارة أنظمتها وقواتها وعملتها. وتدريجيًا أُنشئت مؤسسات اتحادية مشتركة، فصدرت العملة الوطنية الموحدة «الدرهم» عام 1973م، وتقرر عام 1976م توحيد القوات المسلحة تحت قيادة واحدة، وتتابع إنشاء الوزارات والمحاكم الاتحادية لتنظيم شؤون المواطنين وتقديم الخدمات لهم بعدالة واحدة في كل الإمارات.</p>
+<p>وأسهم الشيخ راشد بن سعيد في هذه المسيرة بما حباه الله من خبرة تجارية؛ فقد حوّل دبي إلى مركز تجاري إقليمي عبر مشروعات كبرى، منها ميناء راشد الذي افتُتح عام 1972م وميناء جبل علي الذي بدأ العمل فيه عام 1979م، وكان للشيخين زايد وراشد دور كبير في دعم المشروعات الاتحادية في سنواتها الأولى. وكان الشيخ راشد يؤمن بأن قوة الاتحاد تُقاس بما يحققه لأبنائه من ازدهار.</p>
+<p>وهكذا تكاملت أدوار الآباء المؤسسين: قيادة سياسية جامعة، وتأسيس للمؤسسات، وتنمية اقتصادية متواصلة، فتحقق لأبناء الإمارات استقرار وفّر لهم التعليم والصحة والعمل، وصارت التجربة الاتحادية مثالًا يُدرَّس في التعاون بين الكيانات المتفرقة.</p>`,
+qs:[
+['الفكرة الرئيسة للنص هي:',['نشأة ميناء راشد وتطوره','أسباب انسحاب بعض الأطراف من الاتحاد','جهود الآباء المؤسسين في بناء مؤسسات الدولة الاتحادية وتحقيق الاستقرار لأبنائها','أنظمة الحكم في دول العالم المختلفة'],2],
+['أي الإجراءات الآتية يدل على الانتقال من أنظمة متفرقة بين الإمارات إلى نظام موحد؟',['إصدار العملة الموحدة وتوحيد القوات المسلحة','افتتاح ميناء راشد عام 1972م','تنوع الأنشطة التجارية في دبي','إقامة مراسم إعلان الاتحاد'],0],
+['ما الدور الاقتصادي الذي يعرضه النص للشيخ راشد بن سعيد؟',['إعداد الدستور المؤقت للدولة','قيادة القوات المسلحة الموحدة','إصدار العملة الوطنية الموحدة','تحويل دبي إلى مركز تجاري إقليمي عبر مشروعات كبرى كميناءي راشد وجبل علي'],3],
+['ما الذي يبيّن أن الآباء المؤسسين واصلوا عملهم بعد إعلان الاتحاد؟',['إعلان قيام الدولة في ديسمبر 1971م','استمرار بناء مؤسسات اتحادية بعد الإعلان، مثل العملة والقوات المسلحة والمحاكم','انسحاب بعض الأطراف من مفاوضات الاتحاد','اتفاق الشيخين زايد وراشد على الاتحاد'],1],
+['أي العبارات الآتية تعبّر عن أثر جهود الآباء المؤسسين على المواطنين؟',['زيادة الفوارق بين الإمارات','توقف المشروعات الاتحادية','استقرار وفّر لهم التعليم والصحة والعمل','اعتماد كل إمارة على نفسها وحدها'],2]
+]},
+
+{c:'var(--u2)',title:'الربط بالأحداث الجارية',type:'نص معلوماتي/مقروء',out:'يبيّن الجهود والإجراءات التي تبذلها دولته في تطوير وتوظيف المصادر التقنية للمعلومات الجغرافية لتلبية احتياجاته وحماية البيئة وتحقيق التنمية المستدامة محليًا ودوليًا',
+text:`<h4>أقمار الإمارات: عيون على الأرض</h4>
+<p>تُعدّ الصور الفضائية ونظم المعلومات الجغرافية أدوات أساسية لصانع القرار؛ فهي تكشف تغيّر السواحل وتوسّع المدن ومساحات الغطاء النباتي، وتتيح مقارنة الصور عبر السنوات لمعرفة اتجاه التغيير. ومن هنا أولت الإمارات اهتمامًا بامتلاك قدراتها الخاصة في رصد الأرض بدلًا من الاعتماد الكامل على مصادر خارجية.</p>
+<p>بدأت الرحلة بإطلاق «دبي سات-1» عام 2009م، وهو أول قمر لرصد الأرض في الدولة، تلاه «دبي سات-2» عام 2013م بقدرات تصوير أفضل، ثم «خليفة سات» عام 2018م الذي صمّمه وبناه مهندسون إماراتيون، وأخيرًا «MBZ-SAT» عام 2025م وهو الأحدث في هذه السلسلة. وتخدم هذه الأقمار التخطيط العمراني، ومتابعة التغيرات البيئية، وإدارة الموارد، وتعزيز الاستعداد للطوارئ.</p>
+<p>وتتجاوز الفائدة حدود الدولة؛ إذ تتعاون الإمارات مع وكالات ومؤسسات علمية دولية، وتتيح بيانات بعض مشروعاتها للباحثين، فيدعم ذلك أهداف التنمية المستدامة عالميًا، ومنها العمل المناخي وحماية الموارد الطبيعية. كما تسهم المشروعات الفضائية في تأهيل جيل من العلماء والمهندسين الإماراتيين، وهو استثمار في الإنسان يضمن استمرار المسيرة.</p>
+<div class="cap">جدول: سلسلة أقمار رصد الأرض الإماراتية</div>
+<table><tr><th>القمر</th><th>عام الإطلاق</th><th>ملاحظة</th></tr>
+<tr><td>دبي سات-1</td><td>2009م</td><td>أول قمر لرصد الأرض في الدولة</td></tr>
+<tr><td>دبي سات-2</td><td>2013م</td><td>قدرات تصوير أفضل من سابقه</td></tr>
+<tr><td>خليفة سات</td><td>2018م</td><td>صمّمه وبناه مهندسون إماراتيون</td></tr>
+<tr><td>MBZ-SAT</td><td>2025م</td><td>الأحدث في السلسلة</td></tr></table>`,
+qs:[
+['الفكرة الرئيسة للنص هي:',['تاريخ تأسيس وكالة الفضاء','توظيف الإمارات الأقمار الصناعية ونظم المعلومات الجغرافية لخدمة التخطيط والبيئة والتنمية المستدامة','صعوبات إطلاق الأقمار الاصطناعية','أنواع الصور الفضائية وتصنيفاتها'],1],
+['أي الأقمار الآتية هو أول قمر لرصد الأرض في الدولة؟',['خليفة سات','MBZ-SAT','دبي سات-2','دبي سات-1'],3],
+['افترض (لأغراض الاختبار) أن مساحة منطقة حضرية 840 كم²، وأن الخرائط الجغرافية أظهرت أن المساحات الخضراء تشكّل 35% منها. ما مساحة المساحات الخضراء؟',['294 كم²','350 كم²','490 كم²','805 كم²'],0,'840 × 0.35 = 294 كم².'],
+['كم عامًا يفصل بين إطلاق «دبي سات-2» وإطلاق «MBZ-SAT»، بحسب الجدول؟',['7 أعوام','9 أعوام','12 عامًا','16 عامًا'],2,'2025 − 2013 = 12 عامًا.'],
+['ما الأثر الذي يُفهم من النص لامتلاك الدولة قدرات رصد خاصة بها؟',['الاعتماد الكلي على مصادر خارجية','تقليص الاهتمام بالتخطيط','الاقتصار على الأغراض العسكرية','دعم قرارات التخطيط وحماية البيئة وإعداد كوادر وطنية'],3]
+]},
+
+{c:'var(--u3)',title:'طائر الحبارى',type:'نص مقروء',out:'يربط بين تفاصيل نص ما للتوصل إلى استنتاجات حول النص ككل',
+text:`<h4>الحبارى بالأرقام</h4>
+<p>تُعرف الحبارى في الجزيرة العربية بأنها طائر الصحراء الحذر؛ إذ تعتمد على لون ريشها وهدوئها للنجاة من الأعداء. وتنتشر الحبارى الآسيوية في نطاق شاسع يمتد من شبه الجزيرة العربية جنوبًا إلى منغوليا والصين شرقًا، وتقطع في هجرتها آلاف الكيلومترات، بينما تعيش حبارى شمال إفريقيا في بيئات أخرى غرب العالم العربي.</p>
+<p>ولأن أعداد الحبارى تراجعت في البرية، أنشأت الإمارات برنامجًا لإكثار نوعيها: الآسيوية وحبارى شمال إفريقيا. وبحسب بيانات الصندوق الدولي للحفاظ على الحبارى، أنتج الصندوق عام 2013م نحو 19670 حبارى آسيوية، منها 19273 طائرًا في مركزي أبوظبي، و397 طائرًا فقط في مركز كازاخستان الذي كان آنذاك في بداياته. أما حبارى شمال إفريقيا فتُكثَّر منذ عام 1997م في مركز الإمارات لتنمية الحياة الفطرية بمنطقة ميسور في المملكة المغربية.</p>
+<p>ولا يكتفي الصندوق بزيادة الأعداد، بل يتتبع الطيور المطلقة بالأقمار الصناعية؛ وقد أظهر التتبع أن بعضها ابتعد نحو 200 كيلومتر عن موقع الإطلاق. والإطلاق جزء من استراتيجية تستهدف إطلاق 50 ألف طائر في دول انتشار الحبارى في آسيا وشمال إفريقيا، ما يجعل الجهد الإماراتي مشروعًا إقليميًا لا محليًا.</p>
+<p>ويدل ارتفاع الأعداد المنتجة، واتساع نطاق المراكز من أبوظبي إلى المغرب وكازاخستان، على أن البرنامج انتقل من محاولة محدودة إلى مشروع دولي مستدام.</p>`,
+qs:[
+['يُستنتج من توزيع الإنتاج عام 2013م أن:',['مراكز أبوظبي كانت المنتج الأكبر للحبارى الآسيوية آنذاك','مركز كازاخستان تفوّق على مراكز أبوظبي','إنتاج الحبارى توقف في الإمارات','حبارى شمال إفريقيا لا تُكثَّر في أي مركز'],0],
+['ما مجموع ما أُنتج من الحبارى الآسيوية في مركزي أبوظبي ومركز كازاخستان عام 2013م؟',['19276 طائرًا','19370 طائرًا','19670 طائرًا','20670 طائرًا'],2,'19273 + 397 = 19670 طائرًا.'],
+['لماذا يُعدّ البرنامج مشروعًا إقليميًا لا محليًا، وفق النص؟',['لأنه يقتصر على مركز واحد','لأن مراكزه تمتد إلى المغرب وكازاخستان واستراتيجيته تستهدف الإطلاق في دول الانتشار','لأنه توقف بعد عام 2013م','لأنه يهتم بنوع واحد من الحبارى'],1],
+['كيف يخدم تتبع الطيور المطلقة بالأقمار الصناعية هدف البرنامج؟',['يزيد عدد البيض الذي تضعه','يحميها من الصيد','يمنعها من الهجرة','يُظهر مدى تحركها بعد الإطلاق فيُقيَّم نجاح عودتها إلى البرية'],3],
+['العنوان الأنسب للنص ككل هو:',['الحبارى والصحراء','الحبارى: برنامج إماراتي ينتقل من الإكثار المحلي إلى مشروع إقليمي مستدام','رحلة الطيور من منغوليا','أرقام الصيد في الجزيرة العربية'],1]
+]},
+
+{c:'var(--u4)',title:'سرد الذات',type:'نص معلوماتي',out:'يتتبع حياة الشيخ الدكتور سلطان بن محمد القاسمي الجامعية في جمهورية مصر العربية',
+text:`<h4>جامعة القاهرة… علاقة لا تنقطع</h4>
+<p>ارتبط اسم الشيخ الدكتور سلطان بن محمد القاسمي، حاكم الشارقة، بجامعة القاهرة منذ التحق بكلية الزراعة فيها، حتى تخرّج عام 1971م حاملًا بكالوريوس العلوم في الهندسة الزراعية. ولم تنتهِ علاقته بالجامعة بالتخرج، بل تحولت إلى وفاء متبادل بين الطرفين.</p>
+<p>ففي عام 2018م منحته جامعة القاهرة «درع الشخصية المتميزة»، وفي حفل التكريم عبّر سموه عن اعتزازه بأنه من خريجيها، وذكر أن الجامعة منحته الفكر الأكاديمي الصحيح وأسهمت في تكوين جانب من شخصيته، وأن مصر علّمته الثقافة. وفي عام 2019م زار كلية الزراعة، واستقبله نائب رئيس الجامعة لشؤون الدراسات العليا والبحوث وعميد الكلية، وعُرض فيلم تسجيلي قصير عن إسهاماته في دعم برامج الجامعة وأنشطتها. وقال عميد الكلية إن سموه ابن بار للكلية، لا يحمل الجنسية المصرية في جواز سفره لكنه يحملها في قلبه.</p>
+<p>وفي أغسطس 2025م افتتح رئيس جامعة القاهرة أعمال تجديد مسرح كلية الزراعة «حشاد» ومدرجها الرئيسي «حفناوي» بعد تحديث شامل تم بدعم من سموه، وشهد المناسبة عرضًا مسرحيًا لمسرحية «النمرود» من تأليف الشيخ الدكتور سلطان القاسمي.</p>
+<div class="cap">جدول: علاقة الشيخ سلطان بجامعة القاهرة</div>
+<table><tr><th>العام</th><th>الحدث</th></tr>
+<tr><td>1971م</td><td>التخرج في كلية الزراعة</td></tr>
+<tr><td>2018م</td><td>منحه جامعة القاهرة درع الشخصية المتميزة</td></tr>
+<tr><td>2019م</td><td>زيارته كلية الزراعة</td></tr>
+<tr><td>2025م</td><td>افتتاح المسرح والمدرج المجدَّدين بدعمه</td></tr></table>`,
+qs:[
+['في أي عام زار الشيخ سلطان كلية الزراعة واستقبله نائب رئيس الجامعة وعميد الكلية؟',['1971م','2018م','2025م','2019م'],3],
+['كم عامًا مرّ بين تخرّج الشيخ سلطان وتكريمه بدرع الشخصية المتميزة، بحسب الجدول؟',['37 عامًا','47 عامًا','57 عامًا','17 عامًا'],1,'2018 − 1971 = 47 عامًا.'],
+['ما الدليل على استمرار علاقة سموه بالجامعة بعد التخرج؟',['تكريمه عام 2018م وزيارته عام 2019م ودعمه تجديد مسرح الكلية ومدرجها','إقامته الدائمة في القاهرة','عمله أستاذًا في الكلية','إصداره قرارات تخص الجامعة'],0],
+['ماذا قصد عميد الكلية بقوله إن سموه يحمل الجنسية المصرية في قلبه؟',['أنه تقدّم بطلب الحصول على الجنسية','أنه يقيم في مصر إقامة دائمة','أنه شديد المحبة والانتماء لمصر وجامعتها رغم عدم حمله جنسيتها','أنه يعمل أستاذًا بالكلية'],2],
+['أي الخيارات الآتية يرتّب الأحداث التالية ترتيبًا زمنيًا صحيحًا؟ (1) تخرّجه، (2) زيارته الكلية، (3) افتتاح المسرح المجدَّد، (4) تكريمه بدرع الشخصية المتميزة.',['1 – 2 – 4 – 3','4 – 1 – 2 – 3','1 – 4 – 2 – 3','1 – 4 – 3 – 2'],2]
+]},
+
+{c:'var(--u5)',title:'قراءة خارجية',type:'نص مقروء',out:'يلخص الأفكار والتفاصيل في نص ما بحيث يظهر فهمه للعلاقات والترابط فيه',
+text:`<h4>الماء: ثروة تُصان</h4>
+<p>الماء أساس الحياة، وهو مورد محدود في كثير من مناطق العالم، ومنها المناطق الصحراوية الجافة. وكلما زاد عدد السكان واتسعت المدن والمزارع والمصانع ارتفع الطلب على المياه، فتتعرض مصادرها لضغط متزايد.</p>
+<p>ولا تقتصر مشكلة المياه على قلتها، بل تشمل هدرها وسوء استخدامها. فكثير من الأسر تستهلك كميات تفوق حاجتها بسبب العادات اليومية الخاطئة، كترك الصنبور مفتوحًا أو ري الحدائق في أوقات شدة الحرارة التي يتبخر فيها جزء كبير من الماء قبل أن ينتفع به النبات.</p>
+<p>وللتعامل مع هذه المشكلة تتضافر الحلول؛ فعلى مستوى الأفراد يفيد ترشيد الاستهلاك وإصلاح التسريبات، وعلى مستوى المؤسسات تُستخدم تقنيات الري الحديثة التي توصل الماء إلى جذور النبات مباشرة فتقلل الفاقد، وتُعاد معالجة مياه الصرف لاستخدامها في الزراعة والتبريد الصناعي. أما على مستوى الدولة فتوضع سياسات وتشريعات تنظم الاستخدام وتدعم البحث العلمي.</p>
+<p>ويؤدي نجاح هذه الحلول إلى نتائج متتابعة: انخفاض الفاقد، فتوفير في التكاليف، فاستدامة الموارد للأجيال القادمة. ومن ثمّ فإن صون الماء مسؤولية مشتركة لا يكفي فيها جهد طرف واحد.</p>`,
+qs:[
+['أنسب تلخيص للنص هو:',['الماء متوفر بكثرة ولا يحتاج إلى ترشيد','الماء مورد محدود يتعرض للضغط والهدر، وصونه يتطلب حلولًا يشترك فيها الأفراد والمؤسسات والدولة','مشكلة المياه سببها قلة الأمطار فقط','حل مشكلة المياه بيد الدولة وحدها'],1],
+['ما العلاقة بين الفقرتين الثانية والثالثة؟',['الثانية تعرض مشكلة الهدر وسوء الاستخدام، والثالثة تعرض الحلول','الثالثة تناقض ما ورد في الثانية','الثانية تعرض نتائج الحلول والثالثة تعرض أسباب المشكلة','الفقرتان تعرضان حلين متماثلين'],0],
+['لماذا لا يُنصح بري الحدائق في أوقات شدة الحرارة؟',['لأن النبات لا يحتاج إلى الماء','لأن الماء يتجمد','لأن التربة تمتص ماءً كثيرًا','لأن جزءًا كبيرًا من الماء يتبخر قبل أن ينتفع به النبات'],3],
+['أي الأسباب الآتية تؤدي إلى ارتفاع الطلب على المياه، وفق النص؟',['قلة عدد السكان','انحسار المدن','زيادة عدد السكان واتساع المدن والمزارع والمصانع','ترشيد الاستهلاك'],2],
+['ما التسلسل الصحيح للنتائج المتتابعة لنجاح الحلول، كما يرد في الفقرة الأخيرة؟',['انخفاض الفاقد، ثم توفير في التكاليف، ثم استدامة الموارد','استدامة الموارد، ثم انخفاض الفاقد، ثم توفير في التكاليف','توفير في التكاليف، ثم استدامة الموارد، ثم انخفاض الفاقد','انخفاض الفاقد، ثم استدامة الموارد، ثم توفير في التكاليف'],0]
+]}
+];
+
+var ALL=[],answers={},submitted=false,endAt=0,tick=null;
+function $(i){return document.getElementById(i)}
+
+function build(){
+  var h='',pal='',n=0;
+  UNITS.forEach(function(u,ui){
+    var first=n+1,last=n+u.qs.length;
+    h+='<section class="unit" style="--c:'+u.c+'"><div class="uh"><div class="no">الوحدة '+(ui+1)+' · الأسئلة '+first+'–'+last+'</div><h3>'+u.title+'</h3><div class="meta"><span class="chip">'+u.type+'</span><span class="chip">20 درجة</span></div></div>';
+    h+='<div class="outcome"><b>ناتج التعلم:</b> '+u.out+'</div><div class="text">'+u.text+'</div><div class="qs">';
+    u.qs.forEach(function(q,qi){
+      var id=n; ALL.push({u:ui,q:q});
+      h+='<div class="q" id="q'+id+'"><div class="qt"><span class="qn">'+(id+1)+'</span><span>'+q[0]+'</span><span class="pts">4 درجات</span></div><div class="opts">';
+      q[1].forEach(function(o,oi){h+='<button class="opt" data-q="'+id+'" data-o="'+oi+'" onclick="pick('+id+','+oi+')"><span class="l">'+LET[oi]+'</span><span>'+o+'</span></button>'});
+      h+='</div>'+(q[3]?'<div class="expl">💡 '+q[3]+'</div>':'')+'</div>';
+      pal+='<a href="#q'+id+'" id="p'+id+'">'+(id+1)+'</a>';
+      n++;
+    });
+    h+='</div></section>';
+  });
+  $('exam').innerHTML=h; $('pal').innerHTML=pal;
+}
+
+function pick(q,o){
+  if(submitted)return;
+  answers[q]=o;
+  document.querySelectorAll('[data-q="'+q+'"]').forEach(function(b){b.classList.toggle('sel',+b.dataset.o===o)});
+  $('q'+q).classList.add('ans'); $('p'+q).classList.add('done');
+  progress();
+  try{localStorage.setItem('ex_g12_ans_m2',JSON.stringify(answers))}catch(e){}
+}
+function progress(){
+  var c=Object.keys(answers).length;
+  $('pc').textContent=c; $('pf').style.width=(c/25*100)+'%';
+}
+function fmt(s){var m=Math.floor(s/60),x=s%60;return (m<10?'0':'')+m+':'+(x<10?'0':'')+x}
+function start(){
+  var nm=$('sname').value.trim();
+  if(!nm){$('sname').focus();$('sname').style.borderColor='var(--bad)';return}
+  window.STUDENT=nm;
+  build();
+  $('intro').classList.add('hide'); $('exam').classList.remove('hide'); $('fin').classList.remove('hide'); $('bar').style.display='block';
+  endAt=Date.now()+120*60*1000;
+  tick=setInterval(function(){
+    var left=Math.max(0,Math.round((endAt-Date.now())/1000));
+    $('timer').textContent=fmt(left); $('timer').classList.toggle('low',left<600);
+    if(left===0){clearInterval(tick);finish(true)}
+  },500);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function finish(auto){
+  if(submitted)return;
+  var un=25-Object.keys(answers).length;
+  if(!auto&&un>0&&!confirm('بقي '+un+' سؤالًا دون إجابة. هل تريد التسليم؟'))return;
+  submitted=true; clearInterval(tick);
+  var score=0,per=UNITS.map(function(){return 0});
+  ALL.forEach(function(it,i){
+    var correct=it.q[2],chosen=answers[i];
+    var box=$('q'+i); box.classList.add('locked');
+    var btns=box.querySelectorAll('.opt');
+    btns.forEach(function(b){
+      var o=+b.dataset.o; b.classList.remove('sel');
+      if(o===correct)b.classList.add('right');
+      else if(o===chosen)b.classList.add('wrong');
+    });
+    var ex=box.querySelector('.expl'); if(ex)ex.classList.add('show');
+    var ok=chosen===correct;
+    if(ok){score+=4;per[it.u]+=4}
+    $('p'+i).classList.remove('done'); $('p'+i).classList.add(ok?'ok':'no');
+  });
+  $('fin').classList.add('hide'); $('result').style.display='block';
+  $('rtitle').textContent='نتيجة الطالب: '+(window.STUDENT||'');
+  $('ring').style.setProperty('--p',score);
+  $('rs').innerHTML=score+'<small>من 100</small>';
+  var ub='';
+  UNITS.forEach(function(u,i){
+    ub+='<div class="ub"><div class="n"><span>'+u.title+'</span><b>'+per[i]+' / 20</b></div><div class="track"><div class="fill" style="width:'+(per[i]/20*100)+'%;background:'+u.c+'"></div></div></div>';
+  });
+  $('ubars').innerHTML=ub;
+  $('rmsg').textContent=score>=90?'ممتاز! أداء متميز 🌟':score>=75?'جيد جدًا، واصل التقدم 👏':score>=50?'مستوى مقبول، راجع الأسئلة الخاطئة 📘':'تحتاج إلى مزيد من المراجعة، لا تستسلم 💪';
+  $('result').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
